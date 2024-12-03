@@ -283,6 +283,8 @@ CMakeSettings.json
 # Nix
 .direnv/
 result
+/cmake-build-release-visual-studio/
+/cmake-build-release-wsl/
 
 # Extra unit tests
 highs-unit-tests
