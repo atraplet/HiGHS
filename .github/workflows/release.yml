@@ -23,35 +23,32 @@ jobs:
           cmake --build ./build --target all
           ls -la
           ls -la build
+          ls -la build/lib
+          ls -la build/bin
       - name: Upload library
         uses: actions/upload-artifact@v4
         with:
           name: lib${{ env.LIB_NAME }}.so
           path: build/lib${{ env.LIB_NAME }}.so
 
-#  build-windows:
-#    runs-on: windows-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#      - name: Setup msys2
-#        uses: msys2/setup-msys2@v2
-#        with:
-#          msystem: UCRT64
-#          update: true
-#          install: >-
-#            mingw-w64-ucrt-x86_64-toolchain
-#            mingw-w64-ucrt-x86_64-cmake
-#            mingw-w64-ucrt-x86_64-ninja
-#      - name: Build
-#        shell: msys2 {0}
-#        run: |
-#          cmake -DCMAKE_BUILD_TYPE=Release -G Ninja -S ./ -B ./build
-#          cmake --build ./build --target all
-#      - name: Upload library
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: ${{ env.LIB_NAME }}.dll
-#          path: build/${{ env.LIB_NAME }}.dll
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        shell: bash
+        run: |
+          cmake -DCMAKE_BUILD_TYPE=Release -G Ninja -S ./ -B ./build
+          cmake --build ./build --target all
+          ls -la
+          ls -la build
+          ls -la build/lib
+          ls -la build/bin
+      - name: Upload library
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.LIB_NAME }}.dll
+          path: build/${{ env.LIB_NAME }}.dll
 #
 #  build-macos:
 #    runs-on: macos-latest
