@@ -38,7 +38,7 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          cmake -DCMAKE_BUILD_TYPE=Release -G Ninja -S ./ -B ./build
+          cmake -DCMAKE_BUILD_TYPE=Release -S ./ -B ./build
           cmake --build ./build --target all
           ls -la
           ls -la build
