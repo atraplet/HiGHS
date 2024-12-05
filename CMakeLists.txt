@@ -607,7 +607,7 @@ else(FAST_BUILD)
 
   include(python-highs)
 
-  option(USE_DOTNET_STD_21 "Use .Net Standard 2.1 support" ON)
+  option(USE_DOTNET_STD_21 "Use .Net Standard 2.1 support" OFF)
   message(STATUS ".Net: Use .Net Framework 2.1 support: ${USE_DOTNET_STD_21}")
 
   include(dotnet)
