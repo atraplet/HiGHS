@@ -21,15 +21,11 @@ jobs:
         run: |
           cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S ./ -B ./build
           cmake --build ./build --target all
-          ls -la
-          ls -la build
-          ls -la build/lib
-          ls -la build/bin
       - name: Upload library
         uses: actions/upload-artifact@v4
         with:
           name: lib${{ env.LIB_NAME }}.so
-          path: build/lib${{ env.LIB_NAME }}.so
+          path: build/lib/lib${{ env.LIB_NAME }}.so
 
   build-windows:
     runs-on: windows-latest
@@ -39,31 +35,35 @@ jobs:
         shell: bash
         run: |
           cmake -G "Visual Studio 17 2022" -S ./ -B ./build
-          cmake --build ./build --target ALL_BUILD --config Release
+          cmake --build ./build --config Release --target ALL_BUILD
           ls -la
           ls -la build
-          ls -la build/lib
           ls -la build/bin
       - name: Upload library
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.LIB_NAME }}.dll
-          path: build/${{ env.LIB_NAME }}.dll
-#
-#  build-macos:
-#    runs-on: macos-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#      - name: Build
-#        shell: bash
-#        run: |
-#          cmake -G Xcode -S ./ -B ./build
-#          cmake --build ./build --config Release --target ALL_BUILD
-#      - name: Upload library
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: lib${{ env.LIB_NAME }}.dylib
-#          path: build/release/lib${{ env.LIB_NAME }}.dylib
+          path: build/bin/${{ env.LIB_NAME }}.dll
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        shell: bash
+        run: |
+          cmake -G Xcode -S ./ -B ./build
+          cmake --build ./build --config Release --target ALL_BUILD
+          ls -la
+          ls -la build
+          ls -la build/lib
+          ls -la build/bin
+          ls -la build/release
+      - name: Upload library
+        uses: actions/upload-artifact@v4
+        with:
+          name: lib${{ env.LIB_NAME }}.dylib
+          path: build/release/lib${{ env.LIB_NAME }}.dylib
 #
 #  release:
 #    runs-on: ubuntu-latest
