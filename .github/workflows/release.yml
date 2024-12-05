@@ -36,14 +36,12 @@ jobs:
         run: |
           cmake -G "Visual Studio 17 2022" -S ./ -B ./build
           cmake --build ./build --config Release --target ALL_BUILD
-          ls -la
-          ls -la build
-          ls -la build/bin
+          ls -la build/bin/Release
       - name: Upload library
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.LIB_NAME }}.dll
-          path: build/bin/${{ env.LIB_NAME }}.dll
+          path: build/bin/Release/${{ env.LIB_NAME }}.dll
 
   build-macos:
     runs-on: macos-latest
@@ -56,14 +54,13 @@ jobs:
           cmake --build ./build --config Release --target ALL_BUILD
           ls -la
           ls -la build
-          ls -la build/lib
-          ls -la build/bin
-          ls -la build/release
+          ls -la build/build
+          ls -la build/RELEASE
       - name: Upload library
         uses: actions/upload-artifact@v4
         with:
           name: lib${{ env.LIB_NAME }}.dylib
-          path: build/release/lib${{ env.LIB_NAME }}.dylib
+          path: build/RELEASE/lib${{ env.LIB_NAME }}.dylib
 #
 #  release:
 #    runs-on: ubuntu-latest
