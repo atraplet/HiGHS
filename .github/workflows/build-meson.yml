@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install Conda environment
-        uses: mamba-org/setup-micromamba@v1
+        uses: mamba-org/setup-micromamba@v2
         with:
           environment-name: highsdev
           create-args: >-
