@@ -51,13 +51,13 @@ jobs:
 
       - name: Build wheels (aarch64)
         if: ${{ contains(matrix.buildplat[1], 'aarch64') }}
-        uses: pypa/cibuildwheel@v2.21
+        uses: pypa/cibuildwheel@v2.22
         env:
           CIBW_BUILD: ${{ matrix.python }}-${{ matrix.buildplat[1] }}
           CIBW_ARCHS_LINUX: aarch64
 
       - name: Build wheels (not aarch64)
         if: ${{ !contains(matrix.buildplat[1], 'aarch64') }}
-        uses: pypa/cibuildwheel@v2.21
+        uses: pypa/cibuildwheel@v2.22
         env:
           CIBW_BUILD: ${{ matrix.python }}-${{ matrix.buildplat[1] }}
