@@ -287,3 +287,7 @@ result
 # Extra unit tests
 highs-unit-tests
 highs-problem-set
+
+.idea/
+cmake-build-release-visual-studio/
+cmake-build-release-wsl/
