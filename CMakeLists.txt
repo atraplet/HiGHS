@@ -65,8 +65,10 @@ option(FORTRAN "Build Fortran interface" OFF)
 message(STATUS "Build Fortran: ${FORTRAN}")
 option(CSHARP "Build CSharp interface" OFF)
 message(STATUS "Build CSharp: ${CSHARP}")
+option(JAVA "Build Java interface" OFF)
+message(STATUS "Build Java: ${JAVA}")
 
-if (FORTRAN OR CSHARP)
+if (FORTRAN OR CSHARP OR JAVA)
   set(BUILD_SHARED_LIBS ON)
 endif()
 
