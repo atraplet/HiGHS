@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  build-linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,3 +16,23 @@ jobs:
         run: |
           cmake -DHIGHSINT64=ON -DJAVA=ON -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S ./ -B ./build
           cmake --build ./build --target all
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        shell: bash
+        run: |
+          cmake -DHIGHSINT64=ON -DHIGHS_NO_DEFAULT_THREADS=ON -DJAVA=ON -G "Visual Studio 17 2022" -S ./ -B ./build
+          cmake --build ./build --config Release --target ALL_BUILD
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        shell: bash
+        run: |
+          cmake -DHIGHSINT64=ON -DJAVA=ON -G Xcode -S ./ -B ./build
+          cmake --build ./build --config Release --target ALL_BUILD
