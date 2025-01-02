@@ -69,6 +69,7 @@
 #define K_HIGHS_MODEL_STATUS_UNKNOWN kHighsModelStatusUnknown
 #define K_HIGHS_MODEL_STATUS_SOLUTION_LIMIT kHighsModelStatusSolutionLimit
 #define K_HIGHS_MODEL_STATUS_INTERRUPT kHighsModelStatusInterrupt
+#define K_HIGHS_MODEL_STATUS_MEMORY_LIMIT kHighsModelStatusMemoryLimit
 
 #define K_HIGHS_BASIS_STATUS_LOWER kHighsBasisStatusLower
 #define K_HIGHS_BASIS_STATUS_BASIC kHighsBasisStatusBasic
